@@ -5,7 +5,29 @@ import RPi.GPIO as GPIO
 import MFRC522
 import signal
 
+import time
+
 continue_reading = True
+
+def redLight():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(23, GPIO.OUT)
+    print "LED on"
+    GPIO.output(23, GPIO.HIGH)
+    time.sleep(1)
+    print "LED off"
+    GPIO.output(23, GPIO.LOW)
+
+def greeLight():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(18, GPIO.OUT)
+    print "LED on"
+    GPIO.output(18, GPIO.HIGH)
+    time.sleep(1)
+    print "LED off"
+    GPIO.output(18, GPIO.LOW)
 
 # Capture SIGINT for cleanup when the script is aborted
 def end_read(signal,frame):
@@ -56,6 +78,8 @@ while continue_reading:
         if status == MIFAREReader.MI_OK:
             MIFAREReader.MFRC522_Read(8)
             MIFAREReader.MFRC522_StopCrypto1()
+            greeLight()
         else:
             print "Authentication error"
+            redLight()
 
