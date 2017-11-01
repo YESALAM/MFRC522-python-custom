@@ -10,6 +10,7 @@ import time
 continue_reading = True
 
 def redLight():
+    GPIO.cleanup()
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(23, GPIO.OUT)
@@ -20,6 +21,7 @@ def redLight():
     GPIO.output(23, GPIO.LOW)
 
 def greeLight():
+    GPIO.cleanup()
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(18, GPIO.OUT)
